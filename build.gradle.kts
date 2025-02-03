@@ -1,6 +1,7 @@
 plugins {
     application
     id("java")
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "org.example"
@@ -31,6 +32,11 @@ tasks.withType<Jar> {
     manifest {
         attributes["Main-Class"] = "wisoft.AppInit4"
     }
+}
+
+tasks.shadowJar {
+    archiveClassifier.set("all")
+    mergeServiceFiles()
 }
 
 application {
