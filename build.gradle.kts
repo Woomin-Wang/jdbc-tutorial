@@ -1,4 +1,5 @@
 plugins {
+    application
     id("java")
 }
 
@@ -17,6 +18,21 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
+tasks.getByName("run", JavaExec::class)
+{
+    standardInput = System.`in`
+}
+
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = "wisoft.AppInit4"
+    }
+}
+
+application {
+    mainClass = "wisoft.AppInit4"
 }
