@@ -46,7 +46,7 @@ public class AppInit4 {
             case 4:
                 System.out.print("조회할 생일(YYYY-MM-DD)을 입력하세요: ");
                 String birthday = scanner.nextLine();
-                Student studentByBirthday = studentService.getStudentByBirthday(birthday);
+                Student studentByBirthday = studentService.getStudentByBirqthday(birthday);
                 System.out.println("[학번] " + studentByBirthday.getNo() + " || [이름] " + studentByBirthday.getName() + " || [생일] " + studentByBirthday.getBirthday());
                 break;
 
@@ -94,7 +94,7 @@ public class AppInit4 {
 
             // 생일 여러명 변경
             case 8:
-                System.out.println("생일을 변경할 학생 수를 입력하세요: ");
+                System.out.print("생일을 변경할 학생 수를 입력하세요: ");
                 int numUpdate = scanner.nextInt();
                 scanner.nextLine(); // 개행 문자 처리
 
@@ -121,7 +121,7 @@ public class AppInit4 {
 
             // 여러명 삭제
             case 10:
-                System.out.println("삭제할 학생 수를 입력하세요: ");
+                System.out.print("삭제할 학생 수를 입력하세요: ");
                 int numDelete = scanner.nextInt();
                 scanner.nextLine(); // 개행 문자 처리
 
