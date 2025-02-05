@@ -17,10 +17,15 @@ public class PostgresStudentService implements StudentService {
                 final Connection conn = PostgresAccess.setConnection();
                 final PreparedStatement pstmt = conn.prepareStatement(query);
                 final ResultSet rs = pstmt.executeQuery()
+
         ) {
             while (rs.next()) {
-                final var student = new Student(rs.getString(1), rs.getString(2), rs.getDate(3).toLocalDate());
-                students.add(student);
+                    final var id = rs.getString(1);
+                    final var name = rs.getString(2);
+                    final var birthDate = rs.getDate(3) != null ? rs.getDate(3).toLocalDate() : null; // NULL 체크 추가
+
+                    final var student = new Student(id, name, birthDate);
+                    students.add(student);
             }
         } catch (final SQLException sqle) {
             System.err.println("SQLException: " + sqle.getMessage());
@@ -42,7 +47,12 @@ public class PostgresStudentService implements StudentService {
 
             try (final ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    student = new Student(rs.getString(1), rs.getString(2), rs.getDate(3).toLocalDate());
+                    final var id = rs.getString(1);
+                    final var name = rs.getString(2);
+                    final var birthDate = rs.getDate(3) != null ? rs.getDate(3).toLocalDate() : null; // NULL 체크 추가
+
+                    student = new Student(id, name, birthDate);
+                    //student = new Student(rs.getString(1), rs.getString(2), rs.getDate(3).toLocalDate());
                 }
             }
         } catch (final SQLException sqle) {
@@ -65,8 +75,11 @@ public class PostgresStudentService implements StudentService {
 
             try (final ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    student = new Student(rs.getString(1), rs.getString(2), rs.getDate(3).toLocalDate());
-                }
+                    final var id = rs.getString(1);
+                    final var name = rs.getString(2);
+                    final var birthDate = rs.getDate(3) != null ? rs.getDate(3).toLocalDate() : null; // NULL 체크 추가
+
+                    student = new Student(id, name, birthDate);                }
             }
         } catch (final SQLException sqle) {
             System.err.println("SQLException: " + sqle.getMessage());
@@ -88,8 +101,11 @@ public class PostgresStudentService implements StudentService {
 
             try (final ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    student = new Student(rs.getString(1), rs.getString(2), rs.getDate(3).toLocalDate());
-                }
+                    final var id = rs.getString(1);
+                    final var name = rs.getString(2);
+                    final var birthDate = rs.getDate(3) != null ? rs.getDate(3).toLocalDate() : null; // NULL 체크 추가
+
+                    student = new Student(id, name, birthDate);                }
             }
         } catch (final SQLException sqle) {
             System.err.println("SQLException: " + sqle.getMessage());
@@ -338,6 +354,7 @@ public class PostgresStudentService implements StudentService {
             System.out.println("SQLState: " + sqex.getSQLState());
         }
         return result.length;
+
     }
 
 }

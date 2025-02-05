@@ -59,8 +59,28 @@ public class AppInit4 {
                 break;
 
             case 6:
-                System.out.println("여러 명의 학생을 추가하는 기능 (생략)");
+                System.out.print("추가할 학생 수를 입력하세요: ");
+                int count = scanner.nextInt();
+                scanner.nextLine(); // 개행 문자 처리
+
+                Student[] newStudents = new Student[count];
+
+                for (int i = 0; i < count; i++) {
+                    System.out.print((i + 1) + "번째 학생의 학번을 입력하세요: ");
+                    String multiNo = scanner.nextLine();
+                    System.out.print((i + 1) + "번째 학생의 이름을 입력하세요: ");
+                    String multiName = scanner.nextLine();
+                    System.out.print((i + 1) + "번째 학생의 생일을 입력하세요(YYYY-MM-DD, 없으면 엔터): ");
+                    String multiBirthday = scanner.nextLine();
+
+                    LocalDate birthdayDate = multiBirthday.isEmpty() ? null : LocalDate.parse(multiBirthday);
+                    newStudents[i] = new Student(multiNo, multiName, birthdayDate);
+                }
+
+                int addedCount = studentService.insertStudentMulti(newStudents);
+                System.out.println(addedCount + "명의 학생이 등록되었습니다.");
                 break;
+
 
             case 7:
                 System.out.print("생일을 변경할 학생의 학번을 입력하세요: ");
@@ -71,11 +91,49 @@ public class AppInit4 {
                 System.out.println(updated + "명의 학생 정보가 변경되었습니다.");
                 break;
 
+            // 생일 여러명 변경
             case 8:
+                System.out.println("생일을 변경할 학생 수를 입력하세요: ");
+                int numUpdate = scanner.nextInt();
+                scanner.nextLine(); // 개행 문자 처리
+
+                Student[] updateStudents = new Student[numUpdate];
+
+                for (int i = 0; i < numUpdate; i++) {
+                    System.out.print("학생 " + (i + 1) + "의 학번을 입력하세요: ");
+                    updateNo = scanner.nextLine();
+                    System.out.print("학생 " + (i + 1) + "의 새 생일을 입력하세요(YYYY-MM-DD): ");
+                    LocalDate updateBirthday = LocalDate.parse(scanner.nextLine());
+                    updateStudents[i] = new Student(updateNo, updateBirthday);
+                }
+
+                int updatedCount = studentService.updateStudentMultiBatch(updateStudents);
+                System.out.println(updatedCount + "명의 학생 생일이 변경되었습니다.");
+                break;
+
+            case 9:
                 System.out.print("삭제할 학생의 학번을 입력하세요: ");
                 String deleteNo = scanner.nextLine();
                 int deleted = studentService.deleteStudentByNo(deleteNo);
                 System.out.println(deleted + "명의 학생 정보가 삭제되었습니다.");
+                break;
+
+            // 여러명 삭제
+            case 10:
+                System.out.println("삭제할 학생 수를 입력하세요: ");
+                int numDelete = scanner.nextInt();
+                scanner.nextLine(); // 개행 문자 처리
+
+                Student[] deleteStudents = new Student[numDelete];
+
+                for (int i = 0; i < numDelete; i++) {
+                    System.out.print("삭제할 학생 " + (i + 1) + "의 학번을 입력하세요: ");
+                    deleteNo = scanner.nextLine();
+                    deleteStudents[i] = new Student(deleteNo);
+                }
+
+                int deletedCount = studentService.deleteStudentNoMultiBatch(deleteStudents);
+                System.out.println(deletedCount + "명의 학생 정보가 삭제되었습니다.");
                 break;
 
             default:
