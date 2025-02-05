@@ -46,7 +46,7 @@ public class AppInit4 {
             case 4:
                 System.out.print("조회할 생일(YYYY-MM-DD)을 입력하세요: ");
                 String birthday = scanner.nextLine();
-                Student studentByBirthday = studentService.getStudentByBirqthday(birthday);
+                Student studentByBirthday = studentService.getStudentByBirthday(birthday);
                 System.out.println("[학번] " + studentByBirthday.getNo() + " || [이름] " + studentByBirthday.getName() + " || [생일] " + studentByBirthday.getBirthday());
                 break;
 
