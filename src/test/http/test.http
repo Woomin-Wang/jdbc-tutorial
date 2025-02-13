@@ -1,0 +1,118 @@
+###
+# 학생 전체 목록을 조회합니다
+GET http://localhost:8080/students
+Accept: application/json
+
+###
+# 학번이 20110101인 학생을 조회합니다.
+GET http://localhost:8080/students/20110101
+Accept: application/json
+
+###
+# 이름이 일지매인 학생을 조회합니다.
+GET http://localhost:8080/students?name=일지매
+Accept: application/json
+
+###
+# 생일이 1990-02-28인 학생을 조회합니다.
+GET http://localhost:8080/students?birthday=1990-03-01
+Accept: application/json
+
+###
+# 학번이 20110401이고, 이름이 이순신인 학생을 추가합니다.
+POST http://localhost:8080/students
+Content-type: application/json
+
+{
+  "no" : "20110432",
+  "name" : "이순신"
+}
+
+###
+# 학번이 20110501, 20110601, 20110701, 20110801이고,\n " + "이름이 이율곡, 이수일, 심순애, 임꺽정인 학생을 추가합니다.
+POST http://localhost:8080/students/batch
+Content-type: application/json
+
+[
+  {
+    "no": "20120522",
+    "name": "이율곡"
+  },
+  {
+    "no": "20120622",
+    "name": "이수일"
+  },
+  {
+    "no": "20210722",
+    "name": "심순애"
+  },
+  {
+    "no" : "20120801",
+    "name" : "임꺽정"
+  }
+]
+
+###
+# 학번이 20110401인 학생의 생일을 1990-03-25으로 변경합니다.
+PATCH http://localhost:8080/students
+Content-type: application/json
+
+{
+  "no": "20110401",
+  "birthday": "1990-03-25"
+}
+
+###
+# 학번이 20110501, 20110601, 20110701, 20110801인 학생의 생일을 각각 \n" + "1990-05-01, 1990-06-01, 1990-07-01, 1990-08-01"으로 변경합니다.
+PATCH http://localhost:8080/students/batch
+Content-type: application/json
+
+[
+  {
+    "no": "20110501",
+    "birthday": "1990-05-01"
+  },
+  {
+    "no": "20110601",
+    "birthday": "1990-06-01"
+  },
+  {
+    "no": "20110701",
+    "birthday": "1990-07-01"
+  },
+  {
+    "no": "20110801",
+    "birthday": "1990-08-01"
+  }
+
+]
+
+###
+# 학번이 20110401인 학생을 목록에서 제거합니다.
+DELETE http://localhost:8080/students
+Content-type: application/json
+
+{
+  "no" : "20110801"
+}
+
+###
+# 학번이 20110501, 20110601, 20110701, 20110801인 학생을 목록에서 제거합니다.
+DELETE http://localhost:8080/students/batch
+Content-type: application/json
+
+[
+  {
+    "no" : "2011040501"
+  },
+  {
+    "no" : "2011040601"
+  },
+  {
+    "no" : "2011040701"
+  },
+  {
+    "no" : "2011040801"
+  }
+]
+

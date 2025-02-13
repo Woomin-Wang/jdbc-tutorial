@@ -16,14 +16,16 @@ public interface StudentService {
 
     Integer insertStudentMulti(final Student[] students);
 
-    Integer insertStudentMultiBatch(final Student[] students);
+    //Integer insertStudentMultiBatch(final Student[] students);
+    Integer insertStudentMultiBatch(final List<Student> students);
 
     Integer updateStudent(final Student student);
 
-    Integer updateStudentMultiBatch(final Student[] students);
+    Integer updateStudentMultiBatch(final List<Student> students);
 
     Integer deleteStudentByNo(final String no);
 
-    Integer deleteStudentNoMultiBatch(final Student[] students);
+    Integer deleteStudentNoMultiBatch(final List<Student> students);
 
+    Integer deleteStudentMulti(List<Student> students);
 }

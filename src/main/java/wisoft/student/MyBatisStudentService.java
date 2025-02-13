@@ -3,11 +3,13 @@ package wisoft.student;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.stereotype.Service;
 import wisoft.common.MyBatisAccess;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class MyBatisStudentService implements StudentService {
 
 
@@ -106,7 +108,9 @@ public class MyBatisStudentService implements StudentService {
     }
 
     @Override
-    public Integer insertStudentMultiBatch(final Student[] students) {
+
+    //public Integer insertStudentMultiBatch(final Student[] students) {
+    public Integer insertStudentMultiBatch(final List<Student> students) {
         try (final SqlSession session = sqlSessionFactory.openSession(ExecutorType.BATCH)) {
             final var studentService = session.getMapper(StudentService.class);
             int result = 0;
@@ -114,7 +118,8 @@ public class MyBatisStudentService implements StudentService {
                 result += studentService.insertStudent(student);
             }
             session.commit();
-            return students.length;
+            //return students.length;
+            return students.size();
         } catch (final Exception ex) {
             System.err.println(ex.getMessage());
             return 0;
@@ -135,14 +140,15 @@ public class MyBatisStudentService implements StudentService {
     }
 
     @Override
-    public Integer updateStudentMultiBatch(Student[] students) {
+    public Integer updateStudentMultiBatch(final List<Student> students) {
         try (final SqlSession session = sqlSessionFactory.openSession(ExecutorType.BATCH)) {
             final var studentService = session.getMapper(StudentService.class);
             for (Student student : students) {
                 studentService.updateStudent(student);
             }
             session.commit();
-            return students.length;
+            //return students.length;
+            return students.size();
         } catch (final Exception ex) {
             System.err.println(ex.getMessage());
             return 0;
@@ -150,7 +156,7 @@ public class MyBatisStudentService implements StudentService {
     }
 
     @Override
-    public Integer deleteStudentByNo(String no) {
+    public Integer deleteStudentByNo(final String no) {
         try (final SqlSession session = sqlSessionFactory.openSession()) {
             final var studentService = session.getMapper(StudentService.class);
             int result = studentService.deleteStudentByNo(no);
@@ -163,14 +169,20 @@ public class MyBatisStudentService implements StudentService {
     }
 
     @Override
-    public Integer deleteStudentNoMultiBatch(Student[] students) {
+    public Integer deleteStudentNoMultiBatch(List<Student> students) {
+        return 0;
+    }
+
+    @Override
+    public Integer deleteStudentMulti(final List<Student> students) {
         try (final SqlSession session = sqlSessionFactory.openSession(ExecutorType.BATCH)) {
             final var studentService = session.getMapper(StudentService.class);
+            int result = 0;
             for (Student student : students) {
-                studentService.deleteStudentByNo(student.getNo());
+                result += studentService.deleteStudentByNo(student.getNo());
             }
             session.commit();
-            return students.length;
+            return students.size();
         } catch (final Exception ex) {
             System.err.println(ex.getMessage());
             return 0;
