@@ -32,7 +32,7 @@ public class StudentController {
     }
 
     // 학생 이름으로 조회
-    @GetMapping(params = "name")
+    @GetMapping(path="", params = "name")
     public Student getStudentByName (
             @RequestParam final String name
     ) {
@@ -40,7 +40,7 @@ public class StudentController {
     }
 
     // 학생 생일으로 조회
-    @GetMapping(params = "birthday")
+    @GetMapping(path="", params = "birthday")
     public Student getStudentByBirthday(
             @RequestParam final String birthday
     ) {

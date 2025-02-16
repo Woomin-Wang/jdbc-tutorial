@@ -12,7 +12,6 @@ import java.util.List;
 @Service
 public class MyBatisStudentService implements StudentService {
 
-
     final SqlSessionFactory sqlSessionFactory = MyBatisAccess.getSqlSessionFactory();
 
 
@@ -21,7 +20,7 @@ public class MyBatisStudentService implements StudentService {
         final List<Student> students;
 
         try (final SqlSession session = sqlSessionFactory.openSession()) {
-            final var studentService = session.getMapper(StudentService.class);
+            StudentService studentService = session.getMapper(StudentService.class);
             students = studentService.getStudents();
             return students;
         } catch (final Exception ex) {

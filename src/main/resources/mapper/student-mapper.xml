@@ -6,7 +6,7 @@
 
     <select id="getStudents"
             resultType="wisoft.student.Student">
-             SELECT * FROM student
+             SELㄴCT * FROM student
     </select>
 
     <select id="getStudentByNo"

@@ -13,6 +13,7 @@
 //        final var studentService = new PostgresStudentService();
 //        var scanner = new Scanner(System.in);
 //
+//
 //        System.out.println("원하는 작업을 선택하세요:");
 //        System.out.println("1. 학생 전체 조회\n2. 특정 학번 조회\n3. 특정 이름 조회\n4. 특정 생일 조회");
 //        System.out.println("5. 학생 추가\n6. 여러 학생 추가\n7. 생일 변경\n8. 여러 학생 생일 변경");

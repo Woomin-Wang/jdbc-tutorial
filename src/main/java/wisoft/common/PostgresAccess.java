@@ -9,7 +9,7 @@ public class PostgresAccess {
     private static Connection conn = null;
 
     public static Connection setConnection() {
-        final String url = "jdbc:postgresql://localhost:15432/exercise";
+        final String url = "jdbc:postgresql://localhost:15432/entertainment";
         final String username = "woomin";
         final String password = "cgrto46ndl";
 

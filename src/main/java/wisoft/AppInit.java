@@ -28,7 +28,7 @@
 ////        System.out.println("");
 ////
 ////        System.out.println("03. 이름이 홍길동인 학생을 조회합니다.");
-////        result = studentService.getStudentByName("홍길동");
+////        result = studentServicse.getStudentByName("홍길동");
 ////        System.out.println("[학번] " + result.getNo() + " || [이름] " + result.getName() + " || [생일] " + result.getBirthday());
 ////        System.out.println("");
 ////

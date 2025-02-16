@@ -1,26 +1,25 @@
-//package wisoft;
-//
-//import wisoft.student.MyBatisStudentService;
-//import wisoft.student.Student;
-//
-//import java.time.LocalDate;
-//import java.util.List;
-//
-//public class AppInit3 {
-//
-//        public static void main(final String... args) {
-//                final var studentService = new MyBatisStudentService();
-//
-//                var resultCount = 0;
-//                Student result;
-//                List<Student> results;
-//
-//                System.out.println("01. 학생 전체 목록을 조회합니다.");
-//                results = studentService.getStudents();
-//                results.forEach(student ->
-//                        System.out.println("[학번] " + student.getNo() + " || [이름] " + student.getName() + " || [생일] " + student.getBirthday())
-//                );
-//                System.out.println("");
+package wisoft;
+
+import wisoft.student.MyBatisStudentService;
+import wisoft.student.Student;
+
+import java.util.List;
+
+public class AppInitStudentMyBatis {
+
+        public static void main(final String... args) {
+                final var studentService = new MyBatisStudentService();
+
+                var resultCount = 0;
+                Student result;
+                List<Student> results;
+
+                System.out.println("01. 학생 전체 목록을 조회합니다.");
+                results = studentService.getStudents();
+                results.forEach(student ->
+                        System.out.println("[학번] " + student.getNo() + " || [이름] " + student.getName() + " || [생일] " + student.getBirthday())
+                );
+                System.out.println("");
 //
 //                System.out.println("02. 학번이 20110101인 학생을 조회합니다.");
 //                result = studentService.getStudentByNo("20110101");
@@ -107,6 +106,6 @@
 //                resultCount = studentService.deleteStudentNoMultiBatch(students);
 //                System.out.println(resultCount + "명의 학생 정보가 삭제되었습니다.");
 //                System.out.println("");
-//        }
-//
-//}
+        }
+
+}
