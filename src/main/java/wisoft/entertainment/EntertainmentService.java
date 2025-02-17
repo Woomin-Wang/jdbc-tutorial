@@ -1,12 +1,9 @@
 package wisoft.entertainment;
 
-import org.apache.ibatis.annotations.Mapper;
-
 import java.util.List;
 
-@Mapper
+// @Mapper
 public interface EntertainmentService {
-
 
     //HNU Entertainment의 부서 코드, 이름, 위치를 검색
     List<Department> getDepartments();
@@ -48,7 +45,8 @@ public interface EntertainmentService {
     Integer updateEmployee();
 
     //우리 회사에 한 명의 임원이 등록 "코드는 E903, 이름은 손진현, 관리자는 E901, 급여는 4000입니다. 알맞게 등록"
-    Integer insertEmployee(String empCode, String empName, String empMgt, int empSal, String empRcode);
+    //Integer insertEmployee(String empCode, String empName, String empMgt, int empSal, String empRcode);
+    Integer insertEmployee(final Employee employees);
 
     //연예관계자인 손진현님이 퇴직했습니다. 연예관계자 목록에서 제거
     Integer deleteEmployee(String empName);

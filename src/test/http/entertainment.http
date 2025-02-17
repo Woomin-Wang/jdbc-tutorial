@@ -1,0 +1,90 @@
+
+###
+# 부서 전체 목록을 조회
+GET http://localhost:8080/entertainments/departments
+Accept: application/json
+
+###
+# 연예관계자 전체 목록을 조회
+GET http://localhost:8080/entertainments/employees
+Accept: application/json
+
+###
+# 특정 제작사가 만든 드라마 조회
+GET http://localhost:8080/entertainments/dramas/producers/HNU-E
+Accept: application/json
+
+###
+# 특정 드라마 방영사 조회
+GET http://localhost:8080/entertainments/dramas/broadcasters?drmBrd1=KBC&drmBrd2=SBC
+Accept: application/json
+
+###
+# 드라마 제작사 조회 (중복 제거)
+GET http://localhost:8080/entertainments/dramas/producers
+Accept: application/json
+
+###
+# 연예관계자들의 급여의 총합과 평균 급여액 계산 후 조회
+GET http://localhost:8080/entertainments/employees/salary-summary
+Accept: application/json
+
+###
+# 방영일자가 아직 확정되지 않은 드라마 이름을 검색
+GET http://localhost:8080/entertainments/dramas/no-opdate
+Accept: application/json
+
+###
+# 연예관계자 이름과 직속 상사 이름 조회
+GET http://localhost:8080/entertainments/employees/managers
+Accept: application/json
+
+###
+# 연예관계자 이름 급여 (급여 내림차순)
+GET http://localhost:8080/entertainments/employees/salaries
+Accept: application/json
+
+###
+# 연예관계자 직급별로 그룹화, (평균 급여액 5000 이상인 직급에 대해)
+GET http://localhost:8080/entertainments/employees/positions
+Accept: application/json
+
+###
+# 연예관계자의 평균 급여액보다 많은 급여를 받는 연예관계자의 이름과 급여 검색
+GET http://localhost:8080/entertainments/employees/above-average
+Accept: application/json
+
+###
+# 방영일자가 확정되지 않은 드라마의 방영일자를 2013-05-01로 편성
+PATCH http://localhost:8080/entertainments/dramas
+Content-Type: application/json
+
+{
+  "drm_opdate": "2013-05-01"
+}
+
+###
+#연예관계자 김수현 씨가 대리에서 실장으로 승진하고 급여가 20% 증가되었습니다. 알맞게 변경
+PATCH http://localhost:8080/entertainments/employees/promotion
+Content-Type: application/json
+
+###
+#우리 회사에 한 명의 임원이 등록 "코드는 E903, 이름은 손진현, 관리자는 E901, 급여는 4000입니다. 알맞게 등록"
+POST http://localhost:8080/entertainments/employees/add
+Content-Type: application/json
+
+    {
+    "empCode": "E903",
+    "empName": "손진현",
+    "empMgt": "E901",
+    "empSal": 4000,
+    "empRcode": "R001"
+    }
+###
+#연예관계자인 손진현님이 퇴직했습니다. 연예관계자 목록에서 제거
+DELETE http://localhost:8080/entertainments/employee/delete
+Content-type: application/json
+
+{
+  "empName": "손진현"
+}

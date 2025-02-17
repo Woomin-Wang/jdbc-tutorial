@@ -145,6 +145,11 @@ public class Employee {
         this.empMgtName = empMgtName;
     }
 
+    public String getEmpRcode() {
+        return empRcode;
+    }
 
-
+    public void setEmpRcode(String empRcode) {
+        this.empRcode = empRcode;
+    }
 }

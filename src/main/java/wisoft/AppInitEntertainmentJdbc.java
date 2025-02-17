@@ -120,13 +120,14 @@ public class AppInitEntertainmentJdbc {
 //             System.out.println(resultCount + "건이 변경되었습니다.");
 //             System.out.println();
 
-
+//
 //             System.out.println("14. 우리 회사에 한 명의 임원이 등록되었습니다. 코드는 E903, 이름은 손진현, 관리자는 E901, 급여는 4000입니다. 알맞게 등록하시오.");
-//             resultCount = entertainmentService.insertEmployee("E903", "손진현", "E901", 4000, "R001");
+//             employeeResult = new Employee("E903", "손진현", "E901", 4000, "R001");
+//             resultCount = entertainmentService.insertEmployee(employeeResult);
 //             System.out.println(resultCount + "건이 등록되었습니다.");
 //             System.out.println();
 
-
+//
 //             System.out.println("15. 연예관계자인 손진현님이 퇴직했습니다. 연예관계자 목록에서 제거하시오.");
 //             resultCount = entertainmentService.deleteEmployee("손진현");
 //             System.out.println(resultCount + "건이 삭제되었습니다.");

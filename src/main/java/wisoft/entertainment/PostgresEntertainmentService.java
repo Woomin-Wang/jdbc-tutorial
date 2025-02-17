@@ -410,7 +410,7 @@ public class PostgresEntertainmentService implements EntertainmentService {
     }
 
     @Override
-    public Integer insertEmployee(String empCode, String empName, String empMgt, int empSal, String empRcode) {
+    public Integer insertEmployee(final Employee employee) {
         final String query = "INSERT INTO employee(emp_code, emp_name, emp_mgt, emp_sal, emp_rcode) " +
                                 "VALUES (?, ?, ?, ?, ?)";
         var result = 0;
@@ -420,16 +420,16 @@ public class PostgresEntertainmentService implements EntertainmentService {
                 conn.setAutoCommit(false);
 
                 try (final PreparedStatement pstmt = conn.prepareStatement(query)) {
-                   pstmt.setString(1,empCode);
-                   pstmt.setString(2,empName);
-                   pstmt.setString(3,empMgt);
-                   pstmt.setInt(4,empSal);
-                   pstmt.setString(5,empRcode);
+                   pstmt.setString(1,employee.getEmpCode());
+                   pstmt.setString(2,employee.getEmpName());
+                   pstmt.setString(3,employee.getEmpMgt());
+                   pstmt.setInt(4,employee.getEmpSal());
+                   pstmt.setString(5,employee.getEmpRcode());
 
-                   if(empMgt == null) {
+                   if(employee.getEmpMgt() == null) {
                         pstmt.setNull(3,Types.VARCHAR);
                    } else {
-                       pstmt.setString(3,empMgt);
+                       pstmt.setString(3,employee.getEmpMgt());
                    }
 
                     result = pstmt.executeUpdate();

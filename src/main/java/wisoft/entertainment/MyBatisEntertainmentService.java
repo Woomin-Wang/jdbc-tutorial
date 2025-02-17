@@ -4,8 +4,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Service;
 import wisoft.common.MyBatisAccess;
-import wisoft.student.Student;
-import wisoft.student.StudentService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -194,10 +192,10 @@ public class MyBatisEntertainmentService implements EntertainmentService {
     }
 
     @Override
-    public Integer insertEmployee(String empCode, String empName, String empMgt, int empSal, String empRcode) {
+    public Integer insertEmployee(final Employee employee) {
         try (final SqlSession session = sqlSessionFactory.openSession()) {
             final var entertainmentService = session.getMapper(EntertainmentService.class);
-            int result = entertainmentService.insertEmployee(empCode, empName, empMgt, empSal, empRcode);
+            int result = entertainmentService.insertEmployee(employee);
             session.commit();
             return result;
         } catch (final Exception ex) {

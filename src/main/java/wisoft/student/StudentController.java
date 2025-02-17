@@ -6,7 +6,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/students")
-
 public class StudentController {
 
     // 객체 생성

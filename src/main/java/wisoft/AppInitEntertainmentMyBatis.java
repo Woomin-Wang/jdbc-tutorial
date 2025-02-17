@@ -53,12 +53,12 @@ public class AppInitEntertainmentMyBatis {
 //            );
 //            System.out.println();
 
-//
-//             System.out.println("5. 드라마 제작사를 검색하시오. 단, 중복된 값이 있으면 제거하시오.");
-//             dramaResults = entertainmentService.getDramaPrd2();
-//             dramaResults.forEach(drama ->
-//                     System.out.println("[제작사] " + drama.getDrmPrd()));
-//             System.out.println();
+
+             System.out.println("5. 드라마 제작사를 검색하시오. 단, 중복된 값이 있으면 제거하시오.");
+             dramaResults = entertainmentService.getDramaPrd2();
+             dramaResults.forEach(drama ->
+                     System.out.println("[제작사] " + drama.getDrmPrd()));
+             System.out.println();
 //
 
 //             System.out.println("6. 연예관계자들의 급여의 총합과 평균 급여액을 계산하시오.");
@@ -107,11 +107,11 @@ public class AppInitEntertainmentMyBatis {
 //             });
 //             System.out.println();
 
-
-             System.out.println("12. 방영일자가 확정되지 않은 드라마의 방영일자가 2013-05-01로 편성되었습니다. 알맞게 변경하시오.");
-             resultCount = entertainmentService.updateDramaDate("2013-05-01");
-             System.out.println(resultCount + "건이 변경되었습니다.");
-             System.out.println();
+//
+//             System.out.println("12. 방영일자가 확정되지 않은 드라마의 방영일자가 2013-05-01로 편성되었습니다. 알맞게 변경하시오.");
+//             resultCount = entertainmentService.updateDramaDate("2013-05-01");
+//             System.out.println(resultCount + "건이 변경되었습니다.");
+//             System.out.println();
 
 //
 //             System.out.println("13. 연예관계자 김수현 씨가 대리에서 실장으로 승진하고 급여가 20% 증가되었습니다. 알맞게 변경하시오.");
@@ -121,11 +121,12 @@ public class AppInitEntertainmentMyBatis {
 //
 //
 //             System.out.println("14. 우리 회사에 한 명의 임원이 등록되었습니다. 코드는 E903, 이름은 손진현, 관리자는 E901, 급여는 4000입니다. 알맞게 등록하시오.");
-//             resultCount = entertainmentService.insertEmployee("E903", "손진현", "E901", 4000, "R001");
+//             employeeResult = new Employee("E903", "손진현", "E901", 4000, "R001");
+//             resultCount = entertainmentService.insertEmployee(employeeResult);
 //             System.out.println(resultCount + "건이 등록되었습니다.");
 //             System.out.println();
 //
-//
+
 //             System.out.println("15. 연예관계자인 손진현님이 퇴직했습니다. 연예관계자 목록에서 제거하시오.");
 //             resultCount = entertainmentService.deleteEmployee("손진현");
 //             System.out.println(resultCount + "건이 삭제되었습니다.");
