@@ -4,134 +4,133 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="wisoft.entertainment.EntertainmentService">
 
-    <resultMap id="departmentResultMap" type="wisoft.entertainment.Department">
-        <result property="deptCode" column="dept_code"/>
-        <result property="deptName" column="dept_name"/>
-        <result property="deptLoc" column="dept_loc"/>
-    </resultMap>
+<!--    <resultMap id="departmentResultMap" type="wisoft.entertainment.Department">-->
+<!--        <result property="deptCode" column="dept_code"/>-->
+<!--        <result property="deptName" column="dept_name"/>-->
+<!--        <result property="deptLoc" column="dept_loc"/>-->
+<!--    </resultMap>-->
 
-    <resultMap id="dramaResultMap" type="wisoft.entertainment.Drama">
-        <result property="drmCode" column="drm_code"/>
-        <result property="drmName" column="drm_name"/>
-        <result property="drmPrd" column="drm_prd"/>
-        <result property="drmBrd" column="drm_brd"/>
-        <result property="drmOpdate" column="drm_opdate"/>
-    </resultMap>
+<!--    <resultMap id="dramaResultMap" type="wisoft.entertainment.Drama">-->
+<!--        <result property="drmCode" column="drm_code"/>-->
+<!--        <result property="drmName" column="drm_name"/>-->
+<!--        <result property="drmPrd" column="drm_prd"/>-->
+<!--        <result property="drmBrd" column="drm_brd"/>-->
+<!--        <result property="drmOpdate" column="drm_opdate"/>-->
+<!--    </resultMap>-->
 
-    <resultMap id="employeeResultMap" type="wisoft.entertainment.Employee">
-        <result property="empCode" column="emp_code"/>
-        <result property="empName" column="emp_name"/>
-        <result property="empMgt" column="emp_mgt"/>
-        <result property="empSal" column="emp_sal"/>
-        <result property="empRcode" column="emp_rcode"/>
+<!--    <resultMap id="employeeResultMap" type="wisoft.entertainment.Employee">-->
+<!--        <result property="empCode" column="emp_code"/>-->
+<!--        <result property="empName" column="emp_name"/>-->
+<!--        <result property="empMgt" column="emp_mgt"/>-->
+<!--        <result property="empSal" column="emp_sal"/>-->
+<!--        <result property="empRcode" column="emp_rcode"/>-->
 
-        <result property="salSum" column="sal_sum"/>
-        <result property="salAvg" column="sal_avg"/>
-        <result property="salMin" column="sal_min"/>
-        <result property="salMax" column="sal_max"/>
+<!--        <result property="salSum" column="sal_sum"/>-->
+<!--        <result property="salAvg" column="sal_avg"/>-->
+<!--        <result property="salMin" column="sal_min"/>-->
+<!--        <result property="salMax" column="sal_max"/>-->
 
-        <result property="employeeName" column="employee_name"/>
-        <result property="managerName" column="manager_name"/>
+<!--        <result property="employeeName" column="employee_name"/>-->
+<!--        <result property="managerName" column="manager_name"/>-->
 
-        <result property="empRname" column="emp_rname"/>
+<!--        <result property="empRname" column="emp_rname"/>-->
 
-    </resultMap>
-
-
+<!--    </resultMap>-->
 
 
-    <select id="getDepartments" resultMap="departmentResultMap">
+
+
+    <select id="getDepartments" resultType="wisoft.entertainment.Department">
         SELECT *
         FROM department
     </select>
 
-    <select id="getEmployees" resultMap="employeeResultMap">
+    <select id="getEmployees" resultType="wisoft.entertainment.Employee">
         SELECT emp_code, emp_name, emp_mgt, emp_sal
         FROM Employee
     </select>
 
-    <select id="getDramaPrd" resultMap="dramaResultMap">
+    <select id="getDramaPrd" resultType="wisoft.entertainment.Drama">
         SELECT drm_code, drm_name, drm_prd
         FROM Drama
         WHERE drm_prd = #{drmPrd}
-        </select>
+    </select>
 
-    <select id="getDramaBrd" resultMap="dramaResultMap">
+    <select id="getDramaBrd" resultType="wisoft.entertainment.Drama">
         SELECT drm_code, drm_name
         FROM Drama
         WHERE drm_brd IN (#{drmBrd1}, #{drmBrd2})
     </select>
 
-    <select id="getDramaPrd2" resultMap="dramaResultMap">
+    <select id="getDramaPrd2" resultType="wisoft.entertainment.Drama">
         SELECT DISTINCT drm_prd
         FROM Drama
-        </select>
+    </select>
 
-    <select id="getEmployeeSal" resultMap="employeeResultMap">
+    <select id="getEmployeeSal" resultType="wisoft.entertainment.Employee">
         SELECT SUM(emp_sal) AS sal_sum, AVG(emp_sal) AS sal_avg
         FROM Employee
-        </select>
+    </select>
 
-    <select id="getDramaNoOpdate" resultMap="dramaResultMap">
+    <select id="getDramaNoOpdate" resultType="wisoft.entertainment.Drama">
         SELECT drm_name
         FROM drama
         WHERE drm_opdate IS NULL
-        </select>
+    </select>
 
-    <select id="getEmployeeMgt" resultMap="employeeResultMap">
-        SELECT e.emp_name AS employee_Name, m.emp_name AS manager_Name
+<!--    내부조인-->
+    <select id="getEmployeeMgt" resultType="wisoft.entertainment.Employee">
+        SELECT e.emp_name AS emp_name, m.emp_name AS manager_name
         FROM employee e, employee m
         WHERE e.emp_mgt = m.emp_code
-        </select>
+    </select>
 
-    <select id="getEmployeeSal2" resultMap="employeeResultMap">
+    <select id="getEmployeeSal2" resultType="wisoft.entertainment.Employee">
         SELECT emp_name, emp_sal
         FROM employee
         ORDER BY emp_sal DESC, emp_name ASC
-        </select>
+    </select>
 
-    <select id="getEmployeeGroup" resultMap="employeeResultMap">
-        SELECT er.emp_rname, AVG(emp_sal) AS sal_avg, MIN(emp_sal) AS sal_min, MAX(emp_sal) AS sal_max
+    <select id="getEmployeeGroup" resultType="wisoft.entertainment.Employee">
+        SELECT er.emp_rname AS emp_rname, AVG(emp_sal) AS sal_avg, MIN(emp_sal) AS sal_min, MAX(emp_sal) AS sal_max
         FROM employee e, emp_role er
         WHERE e.emp_rcode = er.emp_rcode
         GROUP BY er.emp_rname
         HAVING AVG(e.emp_sal) >= 5000
-        </select>
+    </select>
 
-    <select id="getEmployeeSal3" resultMap="employeeResultMap">
+    <select id="getEmployeeSal3" resultType="wisoft.entertainment.Employee">
         SELECT emp_name, emp_sal
-            FROM employee
-            WHERE emp_sal > (SELECT AVG(emp_sal)
-                            FROM employee)
-        </select>
+        FROM employee
+        WHERE emp_sal > (SELECT AVG(emp_sal)
+                        FROM employee)
+    </select>
 
     <update id="updateDramaDate" parameterType="wisoft.entertainment.Drama">
         UPDATE drama
-        SET drm_opdate = #{drmOpdate}::date
+        SET drm_opdate = #{drm_opdate}::date
         WHERE drm_opdate IS NULL
-        </update>
-
-<!--    <update id="updateEmployee" parameterType="wisoft.entertainment.Employee">-->
-<!--        UPDATE Employee-->
-<!--        SET emp_mgt = 'R003', emp_sal = emp_sal * 1.2-->
-<!--        WHERE emp_name = '김수현'-->
-<!--        </update>-->
-
-<!--    <insert-->
-<!--            id="insertEmployee" parameterType="wisoft.entertainment.Employee">-->
-<!--        INSERT INTO employee(emp_code, emp_name, emp_mgt, emp_sal, emp_rcode)-->
-<!--        VALUES (#{empCode}, #{empName}, #{empMgt}, #{empSal}, #{empRcode})-->
-<!--        </insert>-->
-
-<!--    <delete-->
-<!--            id="deleteEmployee" parameterType="wisoft.entertainment.Employee">-->
-<!--        DELETE-->
-<!--        FROM employee-->
-<!--        WHERE emp_name = #{empName}-->
-<!--        </delete>-->
+    </update>
 
 
+    <update id="updateEmployee" parameterType="wisoft.entertainment.Employee">
+        UPDATE Employee
+        SET emp_mgt = 'R003', emp_sal = emp_sal * 1.2
+        WHERE emp_name = '김수현'
+    </update>
 
+    <insert
+            id="insertEmployee" parameterType="wisoft.entertainment.Employee">
+        INSERT INTO employee(emp_code, emp_name, emp_mgt, emp_sal, emp_rcode)
+        VALUES (#{empCode}, #{empName}, #{empMgt}, #{empSal}, #{empRcode})
+    </insert>
+
+    <delete
+            id="deleteEmployee" parameterType="wisoft.entertainment.Employee">
+        DELETE
+        FROM employee
+        WHERE emp_name = #{empName}
+    </delete>
 
 
 </mapper>

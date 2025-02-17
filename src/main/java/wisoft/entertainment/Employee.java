@@ -13,7 +13,6 @@ public class Employee {
     private int salMin;
     private int salMax;
 
-    private String employeeName;
     private String managerName;
 
     private String empRname;
@@ -32,14 +31,6 @@ public class Employee {
 
     public void setManagerName(String managerName) {
         this.managerName = managerName;
-    }
-
-    public String getEmployeeName() {
-        return employeeName;
-    }
-
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
     }
 
     private String empMgtName;

@@ -77,7 +77,7 @@ public class AppInitEntertainmentMyBatis {
 //             System.out.println("8. 연예관계자에 대해 연예관계자의 이름과 직속 상사의 이름을 검색하시오.");
 //             employeeResults = entertainmentService.getEmployeeMgt();
 //             employeeResults.forEach(employee -> {
-//                 System.out.println("[연예관계자 이름] " + employee.getEmployeeName() + " || [직속상사 이름] " + employee.getManagerName());
+//                 System.out.println("[연예관계자 이름] " + employee.getEmpName() + " || [직속상사 이름] " + employee.getManagerName());
 //             });
 //             System.out.println();
 
@@ -89,6 +89,7 @@ public class AppInitEntertainmentMyBatis {
 //             });
 //             System.out.println();
 //
+
 //                 System.out.println("10. 모든 연예관계자를 직급별로 그룹화하고, 평균 급여액이 5000 이상인 직급에 대해 연예 관계자의 직급, 평균 급여액, 최소 급여액, 최대 급여액을 검색하시오");
 //                 employeeResults = entertainmentService.getEmployeeGroup();
 //                 employeeResults.forEach(employee -> {
@@ -107,11 +108,6 @@ public class AppInitEntertainmentMyBatis {
 //             System.out.println();
 
 
-
-
-
-
-//
              System.out.println("12. 방영일자가 확정되지 않은 드라마의 방영일자가 2013-05-01로 편성되었습니다. 알맞게 변경하시오.");
              resultCount = entertainmentService.updateDramaDate("2013-05-01");
              System.out.println(resultCount + "건이 변경되었습니다.");
