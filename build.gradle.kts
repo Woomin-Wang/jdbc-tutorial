@@ -2,6 +2,9 @@ plugins {
     application
     id("java")
     id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("org.springframework.boot") version "3.4.2"
+    id("io.spring.dependency-management") version "1.1.7"
+
 }
 
 group = "org.example"
@@ -17,6 +20,8 @@ dependencies {
 
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+
+    implementation("org.springframework.boot:spring-boot-starter-web:3.4.2")
 }
 
 tasks.getByName("run", JavaExec::class)
