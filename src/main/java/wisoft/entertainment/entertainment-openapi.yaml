@@ -1,0 +1,325 @@
+openapi: "3.1.0"
+info:
+  title: "Entertainment OpenAPI"
+  description: "Entertainment API"
+  version: "1.0.0"
+servers:
+  - url: "http://localhost:8080"
+tags:
+  - name: Department
+    description: 부서
+  - name: Drama
+    description: 드라마
+  - name: Employee
+    description: 연예관계자
+paths:
+  /entertainments/departments:
+    get:
+      tags:
+        - Department
+      summary: "모든 부서 목록"
+      description: "모든 부서 목록을 가져옵니다."
+      operationId: "getDepartments"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Department"
+
+  /entertainments/dramas:
+    patch:
+      tags:
+        - Drama
+      summary: "PATCH entertainments/dramas"
+
+      operationId: "updateDramaDate"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "string"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /entertainments/dramas/broadcasters:
+    get:
+      tags:
+        - Drama
+      summary: "GET entertainments/dramas/broadcasters"
+      operationId: "getDramaBrd"
+      parameters:
+        - name: "drmBrd1"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "drmBrd2"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Drama"
+  /entertainments/dramas/no-opdate:
+    get:
+      tags:
+        - Drama
+      summary: "GET entertainments/dramas/no-opdate"
+      operationId: "getDramaNoOpdate"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Drama"
+  /entertainments/dramas/producers:
+    get:
+      tags:
+        - Drama
+      summary: "GET entertainments/dramas/producers"
+      operationId: "getDramaPrd2"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Drama"
+  /entertainments/dramas/producers/{drmPrd}:
+    get:
+      tags:
+        - Drama
+      summary: "GET entertainments/dramas/producers/{drmPrd}"
+      operationId: "getDramaPrd"
+      parameters:
+        - name: "drmPrd"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Drama"
+  /entertainments/employee/delete:
+    delete:
+      tags:
+        - Employee
+      summary: "DELETE entertainments/employee/delete"
+      operationId: "deleteEmployee"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Employee"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /entertainments/employees:
+    get:
+      tags:
+        - Employee
+      summary: "GET entertainments/employees"
+      operationId: "getEmployees"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Employee"
+  /entertainments/employees/above-average:
+    get:
+      tags:
+        - Employee
+      summary: "GET entertainments/employees/above-average"
+      operationId: "getEmployeeSal3"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Employee"
+  /entertainments/employees/add:
+    post:
+      tags:
+        - Employee
+      summary: "POST entertainments/employees/add"
+      operationId: "insertEmployee"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Employee"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /entertainments/employees/managers:
+    get:
+      tags:
+        - Employee
+      summary: "GET entertainments/employees/managers"
+      operationId: "getEmployeeMgt"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Employee"
+  /entertainments/employees/positions:
+    get:
+      tags:
+        - Employee
+      summary: "GET entertainments/employees/positions"
+      operationId: "getEmployeeGroup"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Employee"
+  /entertainments/employees/promotion:
+    patch:
+      tags:
+        - Employee
+      summary: "PATCH entertainments/employees/promotion"
+      operationId: "updateEmployee"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /entertainments/employees/salaries:
+    get:
+      tags:
+        - Employee
+      summary: "GET entertainments/employees/salaries"
+      operationId: "getEmployeeSal2"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Employee"
+  /entertainments/employees/salary-summary:
+    get:
+      tags:
+        - Employee
+      summary: "GET entertainments/employees/salary-summary"
+      operationId: "getEmployeeSal"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Employee"
+components:
+  schemas:
+    Department:
+      type: "object"
+      properties:
+        deptCode:
+          type: "string"
+        deptName:
+          type: "string"
+        deptLoc:
+          type: "string"
+    Drama:
+      type: "object"
+      properties:
+        drmCode:
+          type: "string"
+        drmName:
+          type: "string"
+        drmPrd:
+          type: "string"
+        drmBrd:
+          type: "string"
+        drmOpdate:
+          type: "string"
+          format: "date-time"
+    Employee:
+      type: "object"
+      properties:
+        empCode:
+          type: "string"
+        empName:
+          type: "string"
+        empMgt:
+          type: "string"
+        empSal:
+          type: "integer"
+          format: "int32"
+        empRcode:
+          type: "string"
+        salSum:
+          type: "integer"
+          format: "int32"
+        salAvg:
+          type: "integer"
+          format: "int32"
+        salMin:
+          type: "integer"
+          format: "int32"
+        salMax:
+          type: "integer"
+          format: "int32"
+        managerName:
+          type: "string"
+        empRname:
+          type: "string"
+        empMgtName:
+          type: "string"
